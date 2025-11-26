@@ -7,7 +7,7 @@ export default function Projects() {
   useEffect(() => {
     async function loadProjects() {
       try {
-        const res = await fetch("http://localhost:5001/projects");
+        const res = await fetch("https://lab5-5hxb.onrender.com/projects");
         if (!res.ok) {
           throw new Error("Failed to fetch");
         }

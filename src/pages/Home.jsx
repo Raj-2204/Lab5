@@ -7,7 +7,7 @@ export default function Home() {
   useEffect(() => {
     async function loadWeather() {
       try {
-        const res = await fetch("http://localhost:5001/weather");
+        const res = await fetch("https://lab5-5hxb.onrender.com/weather");
         if (!res.ok){
           throw new Error("Failed to fetch weather");
         } 
