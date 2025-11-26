@@ -1,18 +1,38 @@
-body {
-    background-color: #f8f9fa;
-    font-family: "Inter", Arial, sans-serif;
-  }
-  
-  .nav-link.active {
-    font-weight: 600;
-    border-bottom: 2px solid #0d6efd;
-  }
-  
-  .card {
-    border-radius: 10px;
-  }
-  
-  .about-page ul li {
-    margin-bottom: 5px;
-  }
-  
+
+body.light {
+  background-color: #f8f9fa;
+  color: #212529;
+}
+body.dark {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+body.dark .card {
+  background-color: #1e1e1e;
+  color: #eaeaea;
+  border: 1px solid #333;
+}
+body.dark .navbar-light {
+  background-color: #1e1e1e ;
+}
+body.dark .navbar-dark {
+  background-color: #000;
+}
+body.dark footer {
+  background-color: #000;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#root {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;   
+}

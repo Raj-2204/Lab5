@@ -1,22 +1,20 @@
+import { useContext } from "react";
+import { DarkModeContext } from "../context/DarkModeContext";
 import { Link, NavLink } from "react-router-dom";
 
 export default function Header() {
+  const { mode, toggleTheme } = useContext(DarkModeContext);
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm py-3">
+    <nav className={`navbar navbar-expand-lg shadow-sm py-3 
+      ${mode === "dark" ? "navbar-dark bg-dark" : "navbar-light bg-light"}`}>
+
       <div className="container">
         <Link className="navbar-brand fw-bold fs-4" to="/">
           Rajveer Portfolio
         </Link>
 
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span className="navbar-toggler-icon"></span>
         </button>
 
@@ -31,7 +29,17 @@ export default function Header() {
             <li className="nav-item">
               <NavLink className="nav-link" to="/projects">Projects</NavLink>
             </li>
+            <li className="nav-item">
+            <NavLink className="nav-link" to="/skills">Skills</NavLink>
+            </li>
           </ul>
+          <button 
+            className="btn btn-outline-primary ms-3"
+            onClick={toggleTheme}
+          >
+            {mode === "dark" ? "Light Mode" : "Dark Mode"}
+          </button>
+
         </div>
       </div>
     </nav>

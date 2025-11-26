@@ -1,19 +1,45 @@
+import { useEffect, useState } from "react";
+
 export default function Projects() {
-    return (
-      <div>
-        <h2 className="fw-bold mb-4">Projects</h2>
-  
-        <div className="card shadow-sm mb-3">
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  useEffect(() => {
+    async function loadProjects() {
+      try {
+        const res = await fetch("http://localhost:5001/projects");
+        if (!res.ok) {
+          throw new Error("Failed to fetch");
+        }
+        const data = await res.json();
+        setProjects(data);
+      } catch (err) {
+        setError("no data available");
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadProjects();
+  }, []);
+
+  if(loading){
+    return <p>Loading.</p>;
+  }else if(error){
+    return <p className="text-danger">{error}</p>;
+  }
+  return (
+    <div>
+      <h2 className="fw-bold mb-4">Projects</h2>
+      {projects.map((p, i) => (
+        <div key={i} className="card shadow-sm mb-3">
           <div className="card-body">
-            <h5 className="card-title fw-bold">Gitify — GitHub Utility App</h5>
-            <p className="card-text">
-              Android app that allows users to log into GitHub and view real-time
-              repo activity. Built with Java, GitHub REST API, and Firebase Cloud Messaging.
-            </p>
-            <p className="mb-0"><strong>Role:</strong> Developer</p>
+            <h5 className="fw-bold">{p.name}</h5>
+            <p><strong>Author:</strong> {p.author}</p>
+            <p><strong>Languages:</strong> {p.languages.join(", ")}</p>
+            <p>{p.description}</p>
           </div>
         </div>
-      </div>
-    );
-  }
-  
+      ))}
+    </div>
+  );
+}
