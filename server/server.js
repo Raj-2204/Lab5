@@ -50,4 +50,5 @@ app.get("/projects", (req, res) => {
   res.json(projects);
 });
 
-app.listen(5001, () => console.log(" running on port 5001"));
+const PORT = process.env.PORT || 5001;
+app.listen(PORT, () => console.log(`Running on port ${PORT}`));
